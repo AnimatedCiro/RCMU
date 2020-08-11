@@ -507,7 +507,8 @@ MonoBehaviour:
   joystick: {fileID: 4936936128339146652}
   button: {fileID: 7792720692311533967}
   comunicazione: {fileID: 6910164882576456525}
-  spaceship: {fileID: 0}
+  spaceship: {fileID: 3987560064850881385, guid: 8e08af68c2a35024d8918a5aa3962400,
+    type: 3}
   Horizontal: 0
   Vertical: 0
 --- !u!1 &7792720692311533961
