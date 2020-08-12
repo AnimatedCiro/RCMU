@@ -51,17 +51,17 @@ MonoBehaviour:
   showDebugMessages: 0
   serverTickRate: 30
   offlineScene: Assets/Scenes/Controller.unity
-  onlineScene: Assets/Scenes/Controller.unity
+  onlineScene: Assets/Scenes/SpaceshipScene.unity
   transport: {fileID: 2869390271255991242}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 7792720692222745113, guid: 945992856977d5b409c94a64b8252979,
+  playerPrefab: {fileID: 6760427232565613064, guid: 5745b1d565614e44189747d857f16956,
     type: 3}
-  autoCreatePlayer: 0
-  playerSpawnMethod: 0
+  autoCreatePlayer: 1
+  playerSpawnMethod: 1
   spawnPrefabs: []
 --- !u!114 &2869390271255991242
 MonoBehaviour:

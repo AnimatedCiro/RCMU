@@ -434,7 +434,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7804467772502700372, guid: 8e08af68c2a35024d8918a5aa3962400, type: 3}
+    - {fileID: -7677867713342532891, guid: 8e08af68c2a35024d8918a5aa3962400, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8e08af68c2a35024d8918a5aa3962400, type: 3}
 --- !u!1 &970558926
 GameObject:
@@ -577,13 +579,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2869390271255991243, guid: 5b189b34054e23b4da16a7382674ef98,
         type: 3}
-      propertyPath: autoCreatePlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2869390271255991243, guid: 5b189b34054e23b4da16a7382674ef98,
-        type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/SpaceshipScene.unity
+      propertyPath: spawnPrefabs.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b189b34054e23b4da16a7382674ef98, type: 3}

@@ -193,6 +193,22 @@ PrefabInstance:
       propertyPath: autoCreatePlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2869390271255991243, guid: 5b189b34054e23b4da16a7382674ef98,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 6760427232565613064, guid: 5745b1d565614e44189747d857f16956,
+        type: 3}
+    - target: {fileID: 2869390271255991243, guid: 5b189b34054e23b4da16a7382674ef98,
+        type: 3}
+      propertyPath: playerSpawnMethod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869390271255991243, guid: 5b189b34054e23b4da16a7382674ef98,
+        type: 3}
+      propertyPath: offlineScene
+      value: Assets/Scenes/SpaceshipScene.unity
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b189b34054e23b4da16a7382674ef98, type: 3}
 --- !u!1 &484561148
