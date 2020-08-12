@@ -6,7 +6,7 @@ public class Spaceship : MonoBehaviour
 {
 
     [Header("Components")]
-    public GameObject leds; 
+    public GameObject leds;
     public Light spotlight;
     public Rigidbody rigidbody;
     public ParticleSystem engine1;
@@ -22,19 +22,20 @@ public class Spaceship : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(horizontal*maxSpeed*Time.deltaTime, 
-                                               vertical*maxSpeed*Time.deltaTime, 
+        this.transform.position = new Vector3(this.transform.position.x + horizontal * maxSpeed * Time.deltaTime,
+                                               this.transform.position.y + vertical * maxSpeed * Time.deltaTime,
                                                0);
     }
 
-    public void Switch_Power(){
-        if(!power)
+    public void Switch_Power()
+    {
+        if (!power)
             StartCoroutine(Power_ON());
         else
             Power_OFF();
@@ -59,7 +60,8 @@ public class Spaceship : MonoBehaviour
         power = true;
     }
 
-    public void Power_OFF(){
+    public void Power_OFF()
+    {
         leds.active = false;
         spotlight.enabled = false;
         rigidbody.useGravity = true;
@@ -78,20 +80,25 @@ public class Spaceship : MonoBehaviour
         spotlight.enabled = false;
     }
 
-    public void Switch_Spotlight(){
-        if(spotlight.enabled)
+    public void Switch_Spotlight()
+    {
+        if (spotlight.enabled)
             Spotlight_OFF();
         else
             Spotlight_ON();
     }
 
-    public void Set_Movement(float Vertical, float Horizontal){
-        Debug.Log(Vertical);
-        vertical = Vertical;
-        horizontal = Horizontal;
+    public void Set_Movement(float Horizontal, float Vertical)
+    {
+        if (power)
+        {
+            vertical = Vertical;
+            horizontal = Horizontal;
+        }
     }
 
-    public void comunicazione(){
+    public void comunicazione()
+    {
         Debug.Log("Stiamo comunicando");
     }
 }
