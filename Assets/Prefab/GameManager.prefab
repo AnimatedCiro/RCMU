@@ -48,6 +48,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   Test42: 0
+  gmx: 0
+  gmy: 0
+  navicella: {fileID: 0}
 --- !u!114 &-4854709026650716441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +84,27 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3649621911616869696, guid: 945992856977d5b409c94a64b8252979,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936936126507299732, guid: 945992856977d5b409c94a64b8252979,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936936128339146641, guid: 945992856977d5b409c94a64b8252979,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 124.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936936128339146642, guid: 945992856977d5b409c94a64b8252979,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 06378fbbe754b874a8ebe34b7a58b3ea,
+        type: 3}
     - target: {fileID: 7792720692222745113, guid: 945992856977d5b409c94a64b8252979,
         type: 3}
       propertyPath: m_Name
