@@ -9,10 +9,10 @@ public class GameManagerScript : NetworkBehaviour
     public int Test42 = 0;
 
     [SyncVar]
-    public float gmx = 0.0f, gmy = 0.0f;
+    public float gmx = 0.0f, gmy = 0.0f, gmys = 0.0f;
 
     public Spaceship navicella;
-    // Start is called before the first frame update
+
     void Start()
     {
         if (isServer)
@@ -25,10 +25,10 @@ public class GameManagerScript : NetworkBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    [Command]
+    public void Update_SpeedLevel(int i)
     {
-
+        navicella.Set_SpeedLevel(i);
     }
 
     [Command]
@@ -38,8 +38,38 @@ public class GameManagerScript : NetworkBehaviour
     }
 
     [Command]
+    public void movimento_Spotlight(float y)
+    {
+        navicella.Set_Spotlight(y);
+    }
+
+    [Command]
+    public void movimento_Gyro(float x)
+    {
+        navicella.Set_Gyroscope(x);
+    }
+
+    [Command]
     public void accendiAstronave()
     {
         navicella.Switch_Power();
+    }
+
+    [Command]
+    public void spegniAstronave()
+    {
+        navicella.Power_OFF();
+    }
+
+    [Command]
+    public void TurnOFFSpotlight()
+    {
+        navicella.Spotlight_OFF();
+    }
+
+    [Command]
+    public void TurnONSpotlight()
+    {
+        navicella.Spotlight_ON();
     }
 }

@@ -14,23 +14,49 @@ public class Spaceship : MonoBehaviour
     public bool power;
 
     [Header("Movement")]
-    public float maxSpeed = 10;
+    
+    public int speedLevel = 0;
+    public float maxSpeed;
     public float vertical;
     public float horizontal;
+    public float vertical_Spotlight;
 
+    public float gyroAngle = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        Update_Position();
+        Update_Spotlight();
+        Update_MaxSpeed();
+        Update_Gyroscope();
+    }
+
+    private void Update_Position(){
         this.transform.position = new Vector3(this.transform.position.x + horizontal * maxSpeed * Time.deltaTime,
                                                this.transform.position.y + vertical * maxSpeed * Time.deltaTime,
                                                0);
+    }
+
+    private void Update_Spotlight(){
+        spotlight.gameObject.transform.Rotate(100*-vertical_Spotlight*Time.deltaTime, 0, 0);
+        if(spotlight.gameObject.transform.rotation.x<-65){
+            spotlight.gameObject.transform.Rotate(-65,0,0);
+        }
+        if(spotlight.gameObject.transform.rotation.x>160){
+            spotlight.gameObject.transform.Rotate(160,0,0);
+        }
+    }
+
+    public void Set_SpeedLevel(int level){
+        speedLevel = level;
+    }
+
+    public void Update_MaxSpeed(){
+        maxSpeed = speedLevel * 5;
+    }
+
+    public void Update_Gyroscope(){
+        this.gameObject.transform.Rotate(-100*gyroAngle*Time.deltaTime,0,0);
     }
 
     public void Switch_Power()
@@ -95,6 +121,17 @@ public class Spaceship : MonoBehaviour
             vertical = Vertical;
             horizontal = Horizontal;
         }
+    }
+
+    public void Set_Spotlight(float Vertical){
+        if(power){
+            vertical_Spotlight = Vertical;
+        }
+    }
+
+    public void Set_Gyroscope(float angle){
+        gyroAngle = angle;
+
     }
 
     public void comunicazione()
