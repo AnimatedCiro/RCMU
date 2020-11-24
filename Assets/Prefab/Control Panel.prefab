@@ -4881,6 +4881,7 @@ MonoBehaviour:
   STG: {fileID: 340771777780480692}
   speedPanel: {fileID: 4510904944631015594}
   GyroM: {fileID: 2338181317185097686}
+  EnergyBar: {fileID: 3408659835228686901}
 --- !u!114 &340771777780480692
 MonoBehaviour:
   m_ObjectHideFlags: 0

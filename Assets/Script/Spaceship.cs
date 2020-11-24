@@ -12,17 +12,40 @@ public class Spaceship : MonoBehaviour
     public ParticleSystem engine1;
     public ParticleSystem engine2;
     public bool power;
+    public GameManagerScript gm;
 
     [Header("Movement")]
-    
     public int speedLevel = 0;
     public float maxSpeed;
+
+    public float currentSpeed;
     public float vertical;
     public float horizontal;
     public float vertical_Spotlight;
 
     public float gyroAngle = 0;
 
+    public bool test = false;
+
+    void Start()
+    {
+        checkGameManager();
+        
+    }
+
+    public void checkGameManager(){
+
+        gm = FindObjectOfType<GameManagerScript>();
+
+        if(gm != null && !test){
+            gm.gameObject.GetComponent<GameManagerScript>().initializeVariable();
+            test = true;
+        }
+    }
+
+    void OnClientConnect(){
+        checkGameManager();
+    }
     void Update()
     {
         Update_Position();
@@ -31,14 +54,48 @@ public class Spaceship : MonoBehaviour
         Update_Gyroscope();
     }
 
+    void OnCollisionStay(Collision collision){
+        currentSpeed = 0;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        //calcolo danni
+        //velocità corrente * numero aleatorio 
+        float damage = currentSpeed *3;
+        //invio dei danni al lato client
+        gm.takeEnergy(-damage);
+        //riduzione della velocità
+        currentSpeed = 0;
+    }
+
     private void Update_Position(){
-        this.transform.position = new Vector3(this.transform.position.x + horizontal * maxSpeed * Time.deltaTime,
-                                               this.transform.position.y + vertical * maxSpeed * Time.deltaTime,
-                                               0);
+
+        
+
+        if(Mathf.Abs(horizontal+vertical) != 0){
+            if(currentSpeed < maxSpeed)
+                currentSpeed += speedLevel * Time.deltaTime;
+            if(currentSpeed > maxSpeed)
+                currentSpeed = maxSpeed;
+        }else {
+            currentSpeed = speedLevel * Time.deltaTime;
+        }
+
+        transform.position += transform.forward * horizontal * currentSpeed * Time.deltaTime;
+        transform.position += transform.up * vertical * currentSpeed * Time.deltaTime;
+
+       /* 
+       this.transform.position = new Vector3(this.transform.position.x + Vector3.forward.x * horizontal * maxSpeed * Time.deltaTime,
+                                                Vector3.forward.y + vertical * maxSpeed * Time.deltaTime,
+                                                0);
+                                                */
+                                            
     }
 
     private void Update_Spotlight(){
         spotlight.gameObject.transform.Rotate(100*-vertical_Spotlight*Time.deltaTime, 0, 0);
+
+        
         if(spotlight.gameObject.transform.rotation.x<-65){
             spotlight.gameObject.transform.Rotate(-65,0,0);
         }

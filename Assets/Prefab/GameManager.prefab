@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4866374129699608113}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,10 @@ MonoBehaviour:
   gmx: 0
   gmy: 0
   gmys: 0
+  energy: 1000
   navicella: {fileID: 0}
+  drive: {fileID: 3887290583015554176}
+  menu: {fileID: 0}
 --- !u!114 &4866374129699608113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +271,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1156030651163225469}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3887290583015554176 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2736330330529124861, guid: 945992856977d5b409c94a64b8252979,
+    type: 3}
+  m_PrefabInstance: {fileID: 1156030651163225469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc648ceae132714abb8301afae06e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
