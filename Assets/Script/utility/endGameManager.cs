@@ -18,12 +18,32 @@ public class endGameManager : MonoBehaviour
 
     public void resetClientCall(){
         //Debug.Log("premo reset");
+        gm.energy = 1000;
         gm.ResetPanelClient();
+
     }
     void OnCollisionEnter(Collision collision)
     {
         Thanos();
-        testo.text = "Congratulazioni! Hai terminato la demo.";
+        setPharse("Congratulazioni! Hai terminato la demo.");
+        activePanel();
+    }
+
+    public void emptyEnergy(){
+        setPharse("Game Over! Hai terminato l' energia.");
+        activePanel();
+    }
+
+    public void brokeEnergy(){
+        setPharse("Game Over! Hai preso troppi danni.");
+        activePanel();
+    }
+
+    void setPharse(string text){
+        testo.text = text;
+    }
+
+    void activePanel(){
         panelMenu.SetActive(true);
     }
 

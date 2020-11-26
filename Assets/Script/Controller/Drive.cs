@@ -23,9 +23,14 @@ public class Drive : MonoBehaviour
     public Image EnergyBar;
     float timer = 0f;
 
+    public Image[] blueprint;
 
+    public GameObject brokenPanel;
+
+    public bool broken;
     void Start()
     {
+        broken = false;
         power = false;
         //joystickMovement = FindObjectOfType<Joystick>();
         gc = FindObjectOfType<GameManagerScript>();
@@ -36,8 +41,10 @@ public class Drive : MonoBehaviour
 
     void Update()
     {
-
-    if(power){
+    if(broken){
+        emptyEnergy();
+    }
+    if(power && !broken){
         timer += Time.deltaTime;
         if (timer >= 1f)
         {
@@ -45,6 +52,11 @@ public class Drive : MonoBehaviour
             gc.energy -= STG.maxSpeed;
             EnergyBar.fillAmount = gc.energy/1000;
             gc.Update_Energy(gc.energy);
+            if(gc.energy <= 0){
+                spegniTutto();
+                emptyEnergy();
+                gc.emptyEnergy();
+            }
         }
     }
         /* if (button.pressed && !entered)
@@ -83,33 +95,53 @@ public class Drive : MonoBehaviour
         spotlightButtonON.gameObject.SetActive(true);
     }
     public void SpaceshipPowerManager(){
-        power = !power;
-        if(power){
-            gc.accendiAstronave();
-            LightOn();
-            UnlockInteractable();
-            buttonPowerOff.gameObject.SetActive(true);
-        }
-        else{
-            gc.spegniAstronave();
-            STG.resetAllToggle();
-            GyroM.PowerOff();
-            LightOff();
-            LockInteractable();
-            buttonPowerOff.gameObject.SetActive(false);
+        if(gc.energy > 0){
+            power = !power;
+            if(power){
+                gc.accendiAstronave();
+                LightOn();
+                UnlockInteractable();
+                buttonPowerOff.gameObject.SetActive(true);
+            }
+            else{
+                spegniTutto();
+            }
         }
     }
 
-    public void resetPanel(){
-        Debug.Log("fine percorso");
-        power = false;
-        gc = FindObjectOfType<GameManagerScript>();
+    public void spegniTutto(){
         gc.spegniAstronave();
         STG.resetAllToggle();
         GyroM.PowerOff();
         LightOff();
         LockInteractable();
         buttonPowerOff.gameObject.SetActive(false);
+    }
+
+    public void emptyEnergy(){
+        foreach(Image i in blueprint){
+            Color c = new Color(i.color.r,i.color.g,i.color.b,0);
+            i.color = Color.Lerp(i.color, c,  Mathf.PingPong(Time.time, 1));
+        }
+    }
+
+    public void brokeScreen(){
+
+        brokenPanel.SetActive(true);
+        emptyEnergy();
+        spegniTutto();
+        
+    }
+    public void resetPanel(){
+        power = false;
+        gc = FindObjectOfType<GameManagerScript>();
+        spegniTutto();
+        EnergyBar.fillAmount = gc.energy/1000;
+        foreach(Image i in blueprint){
+            Color c = new Color(i.color.r,i.color.g,i.color.b,255);
+            i.color = Color.Lerp(i.color, c,  Mathf.PingPong(Time.time, 1));
+        }
+        brokenPanel.SetActive(false);
     }
 
     public void LockInteractable(){

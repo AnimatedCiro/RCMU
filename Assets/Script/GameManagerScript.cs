@@ -72,12 +72,17 @@ public class GameManagerScript : NetworkBehaviour
         this.energy = energia;
     }
 
+    void SyncronizeEnergy(float energia, bool b)
+    {
+        this.energy = energia;
+    }
+
     [ClientRpc]
     public void ResetPanelClient()
     {
         //Debug.Log("chiamata dal server");
         energy = 1000;
-        SyncronizeEnergy(energy);
+        SyncronizeEnergy(energy, true);
         drive.resetPanel();
     }
     public void takeEnergy(float amount){
@@ -88,10 +93,25 @@ public class GameManagerScript : NetworkBehaviour
         energy += amount;
         if(energy > 1000)
             energy = 1000;
-        if(energy < 0)
+        if(energy < 0 && navicella.power){
             energy = 0;
+            end.brokeEnergy();
+            breakScreenGM();
+        }
         SyncronizeEnergy(energy);
 
+    }
+
+    [Command]
+    public void emptyEnergy(){
+        end.emptyEnergy();
+    }
+
+    [ClientRpc]
+    public void breakScreenGM()
+    {
+        drive.broken = true;
+        drive.brokeScreen();
     }
 
     [ClientRpc]
