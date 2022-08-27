@@ -71,16 +71,20 @@ public class Spaceship : MonoBehaviour
     private void Update_Position(){
 
         
-
+        //Se l'analogico si è mosso accelera
         if(Mathf.Abs(horizontal+vertical) != 0){
+            //Accelera se puoi
             if(currentSpeed < maxSpeed)
                 currentSpeed += speedLevel * Time.deltaTime;
+            //Mantieni la velocità al massimo disponibile
             if(currentSpeed > maxSpeed)
                 currentSpeed = maxSpeed;
+        //Altrimenti decelera
         }else {
             currentSpeed = speedLevel * Time.deltaTime;
         }
 
+        //Aggiorna la posizione a seconda dell'orientamento
         transform.position += transform.forward * horizontal * currentSpeed * Time.deltaTime;
         transform.position += transform.up * vertical * currentSpeed * Time.deltaTime;
 

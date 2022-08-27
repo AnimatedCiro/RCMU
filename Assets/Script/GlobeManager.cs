@@ -15,11 +15,27 @@ public class GlobeManager : MonoBehaviour
 
     endGameManager end;
 
+
+
+    void OnTriggerEnter(Collider coll)
+    {
+        Pivot.SetActive(false);
+        this.gameObject.GetComponent<SphereCollider>().enabled = false;
+        myExplosion = Instantiate(Explosion, this.gameObject.transform);
+        if(Door != null)
+            Door.GetComponent<DoorController>().OpenDoor();
+        Camera.GetComponent<CameraShake>().shakeDuration = 1;
+        GameObject other = coll.gameObject;
+         if (other.CompareTag("Player"))
+         {
+             other.GetComponent<Spaceship>().gm.takeEnergy(250f);
+         }
+    }
     
 
     void OnCollisionEnter(Collision collision)
     {
-        //scompari
+        //scompari dalla scena
         Pivot.SetActive(false);
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
         //crea scoppio
